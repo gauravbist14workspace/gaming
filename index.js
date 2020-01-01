@@ -30,9 +30,9 @@ const PORT = process.env.PORT || 5000;
 db.init()
     .then(result => {
         console.log('DB connection success')
-        /*app.listen(PORT, () => {
+        app.listen(PORT, () => {
             console.log('The server has started at port ' + PORT);
-        });*/
+        });
     }).catch(error => {
         console.log(error);
     });
