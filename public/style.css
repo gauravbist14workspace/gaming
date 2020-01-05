@@ -1,0 +1,89 @@
+.center-parent {
+    box-shadow: 0px 0px 20px -1px;
+    /* background: linear-gradient(45deg, #d46b6b, transparent); */
+    background: radial-gradient(#cc7878, transparent);
+    border-radius: 2px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* entire container, keeps perspective */
+.flip-container {
+    perspective: 1000px;
+}
+
+/* flip the pane when hovered */
+/* .flip-container:hover .flipper, .flip-container.hover .flipper {
+    transform: rotateY(180deg);
+} */
+
+.flip-container, .front, .back {
+    width: 500px;
+    height: 400px;
+}
+
+/* flip speed goes here */
+.flipper {
+    transition: 0.6s;
+    transform-style: preserve-3d;
+
+    position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+    backface-visibility: hidden;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+/* front pane, placed above back */
+.front {
+    z-index: 2;
+    /* for firefox 31 */
+    transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+    transform: rotateY(180deg);
+}
+
+
+/** Sidebbar */
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}

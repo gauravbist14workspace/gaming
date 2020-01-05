@@ -17,12 +17,14 @@ app.use(express.urlencoded({
     extended: true
 }));
 
-// Users API route
-app.use('/games', require('./controller/Game'));
-app.use('/persons', require('./controller/User'));
+app.use(express.static(__dirname + '/public'));
+
+// Users API routes
+app.use('/persons', require('./controller/gamerController'));
 
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/index.html');
+    res.sendFile(__dirname + '/public/index.html');
+    // res.sendFile(__dirname + '/index.html');
 });
 
 const PORT = process.env.PORT || 5000;

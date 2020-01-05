@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gamers Unite</title>
+    <script src="https://unpkg.com/rxjs/bundles/rxjs.umd.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+
+<body style="font-family: cursive; background: #523ca9 !important">
+    <div>
+        <span class="pull-right" onclick="openNav()">
+            <i class="fa fa-wrench" style="color: white; position: absolute; top: 15px; right: 25px; margin-left: 50px; cursor: pointer;"></i>
+        </span>
+    </div>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <!-- ontouchstart="this.classList.toggle('hover');" -->
+    <div class="flip-container center-parent">
+
+        <div id="flipper" class="flipper">
+            <div class="front">
+                <form action="/persons/users" method="POST">
+                    <legend>May Node and Express be with you.</legend>
+                    <div class="form-group">
+                        <label style="color: white;" for="username">Username:</label>
+                        <input type="text" class="form-control" placeholder="Enter Gamer Alias" id="username">
+                    </div>
+                    <div class="form-group">
+                        <button style="width: 100%;" class="btn btn-primary" type="submit">Add</button>
+                    </div>
+                </form>
+
+                <div class="form-group">
+                    <button style="width: 100%;" class="btn btn-secondary" type="button" onclick="flipView(180)">Reshuffle Teams
+                        <i class="fa fa-gg-circle"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="back">
+                <form action="/persons/shuffle" method="GET">
+
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-6" style="color: #ffe000;">
+                            Team A
+                        </div>
+
+                        <div class="col-sm-6 col-md-6 col-lg-6" style="color: #3aff2d; text-align: right;">
+                            Team B
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button style="width: 100%;" class="btn btn-primary" type="submit">ReShuffle</button>
+                    </div>
+                </form>
+
+                <div class="form-group">
+                    <button style="width: 100%;" class="btn btn-secondary" type="button" onclick="flipView(360)">Add New
+                        <i class="fa fa-user-plus"></i>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const { range, from } = rxjs;
+        const { map, filter } = rxjs.operators;
+
+        function flipView(degree) {
+            $('#flipper').css({ transform: 'rotateY(' + degree + 'deg)' });
+        }
+
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            // document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            // document.body.style.backgroundColor = "#523ca9";
+        }
+
+        from([1, 2, 3, 4, 5]).pipe(
+            filter(x => x % 2 === 1),
+            map(x => x + x)
+        ).subscribe(x => console.log(x), err => console.log(err), () => console.log('Completed'));
+    </script>
+</body>
+
+</html>
